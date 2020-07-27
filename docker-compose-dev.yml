@@ -1,0 +1,26 @@
+version: "3"
+
+volumes:
+  sync-volume:
+    external: true
+  sync-nginx-volume:
+    external: true
+  
+services: 
+  nginx:
+    volumes:
+      - sync-volume:/var/www/html
+      - sync-nginx-volume:/etc/nginx/conf.d/
+      # - sync-nginx-volume:/etc/nginx/conf.d
+  php:
+    volumes: 
+      - sync-volume:/var/www/html
+  composer:
+    volumes: 
+      - sync-volume:/var/www/html
+  npm:
+    volumes: 
+      - sync-volume:/var/www/html
+  artisan:
+    volumes: 
+      - sync-volume:/var/www/html
