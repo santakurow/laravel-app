@@ -14,9 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ["greeting" => "Hello"]);
 });
 
 Route::get("/test", function () {
-  return "laravel on docker !!!"; 
+  config(["app.timezone" => "America/Chicago"]);
+  $value = config("app.timezone");
+  return "Timezone is $value";
 });
+
+// Route::get('/app', function () {
+//     return view("child", ["name" => "Takuya"]);
+// });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
